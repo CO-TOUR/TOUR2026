@@ -1,0 +1,861 @@
+{
+    "lastUpdate":  "14/06/2026 16:07",
+    "classementGeneral":  [
+                              {
+                                  "rang":  "1",
+                                  "nom":  "Floyd Ladoudouce",
+                                  "equipe":  "RED LIGHT",
+                                  "evol":  "ð",
+                                  "points":  72.9,
+                                  "detail":  "5 / 8"
+                              },
+                              {
+                                  "rang":  "2",
+                                  "nom":  "Harry Boateng",
+                                  "equipe":  "OPTA",
+                                  "evol":  "ð",
+                                  "points":  60.9,
+                                  "detail":  "5 / 8"
+                              },
+                              {
+                                  "rang":  "3",
+                                  "nom":  "Sylvain Schleck",
+                                  "equipe":  "FIFA",
+                                  "evol":  "ð",
+                                  "points":  54.9,
+                                  "detail":  "4 / 8"
+                              },
+                              {
+                                  "rang":  "4",
+                                  "nom":  "Fab Ciprelli",
+                                  "equipe":  "ORANGE",
+                                  "evol":  "ð",
+                                  "points":  47.4,
+                                  "detail":  "5 / 8"
+                              },
+                              {
+                                  "rang":  "5",
+                                  "nom":  "Tonio Jean-René",
+                                  "equipe":  "ORANGE",
+                                  "evol":  "ð",
+                                  "points":  40.6,
+                                  "detail":  "4 / 8"
+                              },
+                              {
+                                  "rang":  "6",
+                                  "nom":  "Didier Roux",
+                                  "equipe":  "RED LIGHT",
+                                  "evol":  "ð",
+                                  "points":  35.6,
+                                  "detail":  "4 / 8"
+                              },
+                              {
+                                  "rang":  "7",
+                                  "nom":  "Nico Bardet",
+                                  "equipe":  "ORANGE",
+                                  "evol":  "ð",
+                                  "points":  29.4,
+                                  "detail":  "4 / 8"
+                              },
+                              {
+                                  "rang":  "8",
+                                  "nom":  "Dams",
+                                  "equipe":  "FIFA",
+                                  "evol":  "ð",
+                                  "points":  29.1,
+                                  "detail":  "4 / 8"
+                              },
+                              {
+                                  "rang":  "9",
+                                  "nom":  "La Broche",
+                                  "equipe":  "FIFA",
+                                  "evol":  "ð",
+                                  "points":  26.6,
+                                  "detail":  "4 / 8"
+                              },
+                              {
+                                  "rang":  "10",
+                                  "nom":  "Dams Olano",
+                                  "equipe":  "ORANGE",
+                                  "evol":  "ð",
+                                  "points":  23.9,
+                                  "detail":  "3 / 8"
+                              },
+                              {
+                                  "rang":  "11",
+                                  "nom":  "Brice Schleck",
+                                  "equipe":  "CO",
+                                  "evol":  "ð",
+                                  "points":  16.9,
+                                  "detail":  "3 / 8"
+                              },
+                              {
+                                  "rang":  "-",
+                                  "nom":  "Pierre-Thomas Joire",
+                                  "equipe":  "FIFA",
+                                  "evol":  "ð",
+                                  "points":  16.9,
+                                  "detail":  "3 / 8"
+                              },
+                              {
+                                  "rang":  "13",
+                                  "nom":  "Kita Circus ",
+                                  "equipe":  "CO",
+                                  "evol":  "ð",
+                                  "points":  14.1,
+                                  "detail":  "3 / 8"
+                              },
+                              {
+                                  "rang":  "14",
+                                  "nom":  "El Raton",
+                                  "equipe":  "FIFA",
+                                  "evol":  "ð",
+                                  "points":  8.4,
+                                  "detail":  "2 / 8"
+                              },
+                              {
+                                  "rang":  "-",
+                                  "nom":  "Paul-Emile Dutilloy",
+                                  "equipe":  "RED LIGHT",
+                                  "evol":  "ð",
+                                  "points":  8.4,
+                                  "detail":  "2 / 8"
+                              }
+                          ],
+    "maillotVert":  [
+                        {
+                            "rang":  1,
+                            "joueur":  "Harry Boateng",
+                            "points":  51
+                        },
+                        {
+                            "rang":  2,
+                            "joueur":  "Floyd Ladoudouce",
+                            "points":  49
+                        },
+                        {
+                            "rang":  3,
+                            "joueur":  "Fab Ciprelli",
+                            "points":  37
+                        },
+                        {
+                            "rang":  4,
+                            "joueur":  "Sylvain Schleck",
+                            "points":  37
+                        },
+                        {
+                            "rang":  5,
+                            "joueur":  "Didier Roux",
+                            "points":  35
+                        },
+                        {
+                            "rang":  6,
+                            "joueur":  "Dams Olano",
+                            "points":  30
+                        },
+                        {
+                            "rang":  7,
+                            "joueur":  "Nico Bardet",
+                            "points":  22
+                        },
+                        {
+                            "rang":  8,
+                            "joueur":  "Pierre-Thomas Joire",
+                            "points":  22
+                        },
+                        {
+                            "rang":  9,
+                            "joueur":  "Brice Schleck",
+                            "points":  22
+                        },
+                        {
+                            "rang":  10,
+                            "joueur":  "Dams",
+                            "points":  20
+                        },
+                        {
+                            "rang":  11,
+                            "joueur":  "Tonio Jean-René",
+                            "points":  19
+                        },
+                        {
+                            "rang":  12,
+                            "joueur":  "Kita Circus ",
+                            "points":  15
+                        },
+                        {
+                            "rang":  13,
+                            "joueur":  "La Broche",
+                            "points":  15
+                        },
+                        {
+                            "rang":  14,
+                            "joueur":  "Paul-Emile Dutilloy",
+                            "points":  0
+                        },
+                        {
+                            "rang":  15,
+                            "joueur":  "El Raton",
+                            "points":  0
+                        }
+                    ],
+    "maillotPois":  [
+                        {
+                            "rang":  1,
+                            "joueur":  "Brice Schleck",
+                            "points":  0
+                        },
+                        {
+                            "rang":  2,
+                            "joueur":  "Dams",
+                            "points":  0
+                        },
+                        {
+                            "rang":  3,
+                            "joueur":  "Dams Olano",
+                            "points":  0
+                        },
+                        {
+                            "rang":  4,
+                            "joueur":  "Didier Roux",
+                            "points":  0
+                        },
+                        {
+                            "rang":  5,
+                            "joueur":  "El Raton",
+                            "points":  0
+                        },
+                        {
+                            "rang":  6,
+                            "joueur":  "Fab Ciprelli",
+                            "points":  0
+                        },
+                        {
+                            "rang":  7,
+                            "joueur":  "Floyd Ladoudouce",
+                            "points":  0
+                        },
+                        {
+                            "rang":  8,
+                            "joueur":  "Harry Boateng",
+                            "points":  0
+                        },
+                        {
+                            "rang":  9,
+                            "joueur":  "Kita Circus ",
+                            "points":  0
+                        },
+                        {
+                            "rang":  10,
+                            "joueur":  "La Broche",
+                            "points":  0
+                        },
+                        {
+                            "rang":  11,
+                            "joueur":  "Nico Bardet",
+                            "points":  0
+                        },
+                        {
+                            "rang":  12,
+                            "joueur":  "Paul-Emile Dutilloy",
+                            "points":  0
+                        },
+                        {
+                            "rang":  13,
+                            "joueur":  "Pierre-Thomas Joire",
+                            "points":  0
+                        },
+                        {
+                            "rang":  14,
+                            "joueur":  "Sylvain Schleck",
+                            "points":  0
+                        },
+                        {
+                            "rang":  15,
+                            "joueur":  "Tonio Jean-René",
+                            "points":  0
+                        }
+                    ],
+    "journees":  [
+                     {
+                         "date":  "11/06/2026",
+                         "profil":  "Plaine",
+                         "matchs":  [
+                                        "1 2-0 Mexique"
+                                    ],
+                         "classement":  [
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Dams Olano",
+                                                "points":  [
+                                                               14
+                                                           ],
+                                                "total":  14
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Didier Roux",
+                                                "points":  [
+                                                               14
+                                                           ],
+                                                "total":  14
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Harry Boateng",
+                                                "points":  [
+                                                               14
+                                                           ],
+                                                "total":  14
+                                            },
+                                            {
+                                                "rang":  4,
+                                                "joueur":  "Fab Ciprelli",
+                                                "points":  [
+                                                               7
+                                                           ],
+                                                "total":  7
+                                            },
+                                            {
+                                                "rang":  4,
+                                                "joueur":  "Floyd Ladoudouce",
+                                                "points":  [
+                                                               7
+                                                           ],
+                                                "total":  7
+                                            },
+                                            {
+                                                "rang":  4,
+                                                "joueur":  "Brice Schleck",
+                                                "points":  [
+                                                               7
+                                                           ],
+                                                "total":  7
+                                            },
+                                            {
+                                                "rang":  4,
+                                                "joueur":  "Nico Bardet",
+                                                "points":  [
+                                                               7
+                                                           ],
+                                                "total":  7
+                                            },
+                                            {
+                                                "rang":  4,
+                                                "joueur":  "Pierre-Thomas Joire",
+                                                "points":  [
+                                                               7
+                                                           ],
+                                                "total":  7
+                                            },
+                                            {
+                                                "rang":  4,
+                                                "joueur":  "Sylvain Schleck",
+                                                "points":  [
+                                                               7
+                                                           ],
+                                                "total":  7
+                                            },
+                                            {
+                                                "rang":  10,
+                                                "joueur":  "La Broche",
+                                                "points":  [
+                                                               4
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  10,
+                                                "joueur":  "El Raton",
+                                                "points":  [
+                                                               4
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  10,
+                                                "joueur":  "Paul-Emile Dutilloy",
+                                                "points":  [
+                                                               4
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  10,
+                                                "joueur":  "Dams",
+                                                "points":  [
+                                                               4
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  10,
+                                                "joueur":  "Kita Circus ",
+                                                "points":  [
+                                                               4
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  10,
+                                                "joueur":  "Tonio Jean-René",
+                                                "points":  [
+                                                               4
+                                                           ],
+                                                "total":  4
+                                            }
+                                        ]
+                     },
+                     {
+                         "date":  "12/06/2026",
+                         "profil":  "Plaine",
+                         "matchs":  [
+                                        "2 2-1 Corée du Sud",
+                                        "3 1-1 Canada"
+                                    ],
+                         "classement":  [
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Fab Ciprelli",
+                                                "points":  [
+                                                               12,
+                                                               18
+                                                           ],
+                                                "total":  30
+                                            },
+                                            {
+                                                "rang":  2,
+                                                "joueur":  "Floyd Ladoudouce",
+                                                "points":  [
+                                                               0,
+                                                               18
+                                                           ],
+                                                "total":  18
+                                            },
+                                            {
+                                                "rang":  2,
+                                                "joueur":  "Harry Boateng",
+                                                "points":  [
+                                                               0,
+                                                               18
+                                                           ],
+                                                "total":  18
+                                            },
+                                            {
+                                                "rang":  2,
+                                                "joueur":  "Tonio Jean-René",
+                                                "points":  [
+                                                               0,
+                                                               18
+                                                           ],
+                                                "total":  18
+                                            },
+                                            {
+                                                "rang":  5,
+                                                "joueur":  "Dams",
+                                                "points":  [
+                                                               15,
+                                                               0
+                                                           ],
+                                                "total":  15
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "Nico Bardet",
+                                                "points":  [
+                                                               12,
+                                                               0
+                                                           ],
+                                                "total":  12
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "La Broche",
+                                                "points":  [
+                                                               12,
+                                                               0
+                                                           ],
+                                                "total":  12
+                                            },
+                                            {
+                                                "rang":  8,
+                                                "joueur":  "Didier Roux",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            },
+                                            {
+                                                "rang":  8,
+                                                "joueur":  "Kita Circus ",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            },
+                                            {
+                                                "rang":  8,
+                                                "joueur":  "El Raton",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            },
+                                            {
+                                                "rang":  8,
+                                                "joueur":  "Brice Schleck",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            },
+                                            {
+                                                "rang":  8,
+                                                "joueur":  "Paul-Emile Dutilloy",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            },
+                                            {
+                                                "rang":  8,
+                                                "joueur":  "Pierre-Thomas Joire",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            },
+                                            {
+                                                "rang":  8,
+                                                "joueur":  "Sylvain Schleck",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            },
+                                            {
+                                                "rang":  8,
+                                                "joueur":  "Dams Olano",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            }
+                                        ]
+                     },
+                     {
+                         "date":  "13/06/2026",
+                         "profil":  "Plaine",
+                         "matchs":  [
+                                        "4 4-1 Etats Unis",
+                                        "5 1-1 Qatar"
+                                    ],
+                         "classement":  [
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Brice Schleck",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Dams",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Dams Olano",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Didier Roux",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Fab Ciprelli",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Floyd Ladoudouce",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Harry Boateng",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Kita Circus ",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "La Broche",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Nico Bardet",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Pierre-Thomas Joire",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Sylvain Schleck",
+                                                "points":  [
+                                                               5,
+                                                               0
+                                                           ],
+                                                "total":  5
+                                            },
+                                            {
+                                                "rang":  13,
+                                                "joueur":  "El Raton",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            },
+                                            {
+                                                "rang":  13,
+                                                "joueur":  "Paul-Emile Dutilloy",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            },
+                                            {
+                                                "rang":  13,
+                                                "joueur":  "Tonio Jean-René",
+                                                "points":  [
+                                                               0,
+                                                               0
+                                                           ],
+                                                "total":  0
+                                            }
+                                        ]
+                     },
+                     {
+                         "date":  "14/06/2026",
+                         "profil":  "Plaine",
+                         "matchs":  [
+                                        "6 1-1 Brésil",
+                                        "7 0-1 Haiti",
+                                        "8 2-0 Australie"
+                                    ],
+                         "classement":  [
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Floyd Ladoudouce",
+                                                "points":  [
+                                                               38,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  42
+                                            },
+                                            {
+                                                "rang":  1,
+                                                "joueur":  "Sylvain Schleck",
+                                                "points":  [
+                                                               38,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  42
+                                            },
+                                            {
+                                                "rang":  3,
+                                                "joueur":  "Harry Boateng",
+                                                "points":  [
+                                                               19,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  23
+                                            },
+                                            {
+                                                "rang":  4,
+                                                "joueur":  "Tonio Jean-René",
+                                                "points":  [
+                                                               11,
+                                                               7,
+                                                               0
+                                                           ],
+                                                "total":  18
+                                            },
+                                            {
+                                                "rang":  5,
+                                                "joueur":  "Didier Roux",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               11
+                                                           ],
+                                                "total":  15
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "Fab Ciprelli",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "Dams",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "Dams Olano",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "Kita Circus ",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "La Broche",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "Nico Bardet",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "Paul-Emile Dutilloy",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "Pierre-Thomas Joire",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "Brice Schleck",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            },
+                                            {
+                                                "rang":  6,
+                                                "joueur":  "El Raton",
+                                                "points":  [
+                                                               0,
+                                                               4,
+                                                               0
+                                                           ],
+                                                "total":  4
+                                            }
+                                        ]
+                     }
+                 ]
+}

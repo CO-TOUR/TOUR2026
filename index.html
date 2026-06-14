@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tour 2026 l'appli mobile </title>
+    <meta name="description" content="Classements additionnels TOUR 2026 - Maillot Vert & Maillot à Pois">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f1116;
+            --surface: #1a1d24;
+            --surface2: #22262f;
+            --border: #2d3340;
+            --text: #e8eaed;
+            --text-dim: #8b92a0;
+            --green: #2ecc71;
+            --green-dark: #1a7a42;
+            --green-glow: rgba(46, 204, 113, 0.15);
+            --red: #e74c3c;
+            --red-dark: #922b21;
+            --red-glow: rgba(231, 76, 60, 0.15);
+            --gold: #f1c40f;
+            --silver: #bdc3c7;
+            --bronze: #cd7f32;
+            --accent: #3498db;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1a2a1f 0%, #0f1116 50%, #2a1a1a 100%);
+            border-bottom: 1px solid var(--border);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--green), var(--accent), var(--red));
+        }
+        .header h1 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+            background: linear-gradient(135deg, var(--green), #fff, var(--red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header .subtitle { font-size: 0.75rem; color: var(--text-dim); margin-top: 0.3rem; }
+        .last-update { font-size: 0.65rem; color: var(--text-dim); margin-top: 0.5rem; opacity: 0.7; }
+
+        /* Tabs */
+        .tabs {
+            display: flex;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        .tab {
+            flex: 1; min-width: 0;
+            padding: 0.85rem 0.5rem;
+            text-align: center;
+            font-size: 0.75rem; font-weight: 600;
+            color: var(--text-dim);
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.25s ease;
+            white-space: nowrap;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .tab:hover { color: var(--text); background: var(--surface2); }
+        .tab.active-green { color: var(--green); border-bottom-color: var(--green); background: var(--green-glow); }
+        .tab.active-red { color: var(--red); border-bottom-color: var(--red); background: var(--red-glow); }
+        .tab.active-blue { color: var(--accent); border-bottom-color: var(--accent); background: rgba(52,152,219,0.1); }
+        .tab-icon { font-size: 1rem; display: block; margin-bottom: 0.2rem; }
+
+        /* Content */
+        .content { padding: 1rem; max-width: 700px; margin: 0 auto; }
+        .panel { display: none; animation: fadeIn 0.3s ease; }
+        .panel.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Leaderboard */
+        .leaderboard { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); overflow: hidden; }
+        .lb-header { padding: 1rem; text-align: center; font-weight: 700; font-size: 0.95rem; border-bottom: 1px solid var(--border); }
+        .lb-header.green { background: linear-gradient(135deg, var(--green-glow), transparent); color: var(--green); }
+        .lb-header.red { background: linear-gradient(135deg, var(--red-glow), transparent); color: var(--red); }
+        .lb-row {
+            display: flex; align-items: center;
+            padding: 0.65rem 1rem;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.15s;
+        }
+        .lb-row:last-child { border-bottom: none; }
+        .lb-row:hover { background: var(--surface2); }
+        .lb-rank { width: 2rem; font-weight: 700; font-size: 0.85rem; text-align: center; flex-shrink: 0; }
+        .lb-rank.r1 { color: var(--gold); }
+        .lb-rank.r2 { color: var(--silver); }
+        .lb-rank.r3 { color: var(--bronze); }
+        .lb-name { flex: 1; font-size: 0.85rem; font-weight: 500; padding: 0 0.5rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .lb-pts { font-weight: 700; font-size: 0.9rem; min-width: 3rem; text-align: right; flex-shrink: 0; }
+
+        /* Day Card */
+        .day-card { background: var(--surface); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 1rem; overflow: hidden; }
+        .day-header {
+            padding: 0.75rem 1rem; font-weight: 700; font-size: 0.85rem;
+            background: linear-gradient(135deg, var(--green-dark), var(--surface));
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; user-select: none; -webkit-tap-highlight-color: transparent;
+        }
+        .day-header .profil-badge {
+            font-size: 0.65rem; padding: 0.15rem 0.5rem; border-radius: 20px;
+            font-weight: 600; background: var(--surface2); color: var(--text-dim);
+        }
+        .day-header .chevron { transition: transform 0.2s; font-size: 0.8rem; color: var(--text-dim); }
+        .day-header.open .chevron { transform: rotate(180deg); }
+        .day-body { display: none; }
+        .day-body.open { display: block; }
+
+        /* Match Table */
+        .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        .match-table { width: 100%; border-collapse: collapse; }
+        .match-table th {
+            font-size: 0.65rem; color: var(--text-dim); font-weight: 600;
+            padding: 0.4rem 0.3rem; text-align: center;
+            background: var(--surface2); border-bottom: 1px solid var(--border); white-space: nowrap;
+        }
+        .match-table th:nth-child(2) { text-align: left; }
+        .match-table td {
+            font-size: 0.75rem; padding: 0.45rem 0.3rem;
+            text-align: center; border-bottom: 1px solid var(--border);
+        }
+        .match-table td:nth-child(2) { text-align: left; font-weight: 500; }
+        .match-table td.total { font-weight: 700; }
+        .match-table tr:last-child td { border-bottom: none; }
+        .match-table tr.top1 { background: rgba(241,196,15,0.08); }
+        .match-table tr.top2 { background: rgba(189,195,199,0.06); }
+        .match-table tr.top3 { background: rgba(205,127,50,0.06); }
+        .match-label { max-width: 6rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 0.6rem; }
+
+        /* Status */
+        .status-msg { text-align: center; padding: 3rem 1rem; color: var(--text-dim); font-size: 0.9rem; }
+        .status-msg .spinner {
+            display: inline-block; width: 24px; height: 24px;
+            border: 2px solid var(--border); border-top-color: var(--green);
+            border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 0.5rem;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .setup-box {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+            padding: 1.5rem; margin: 1rem; max-width: 600px; margin: 1rem auto;
+        }
+        .setup-box h3 { color: var(--green); margin-bottom: 0.5rem; }
+        .setup-box p { font-size: 0.8rem; color: var(--text-dim); margin: 0.3rem 0; line-height: 1.5; }
+        .setup-box code { background: var(--surface2); padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.75rem; color: var(--accent); }
+        .setup-box ol { font-size: 0.8rem; color: var(--text-dim); padding-left: 1.2rem; line-height: 1.8; }
+
+        /* Styles supplémentaires pour le classement général */
+        .team-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+            background: var(--surface2);
+            color: var(--text-dim);
+            margin-top: 0.15rem;
+            font-weight: 500;
+        }
+        .evol-indicator {
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+            display: inline-block;
+            min-width: 1.2rem;
+            text-align: center;
+        }
+        .evol-up { color: var(--green); }
+        .evol-down { color: var(--red); }
+        .evol-stable { color: var(--text-dim); opacity: 0.6; }
+        .detail-badge {
+            font-size: 0.65rem;
+            padding: 0.15rem 0.4rem;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-dim);
+            border: 1px solid var(--border);
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+
+        .footer { text-align: center; padding: 2rem 1rem; font-size: 0.65rem; color: var(--text-dim); opacity: 0.5; }
+        .sync-dot { animation: blink 1s infinite; }
+        @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+    </style>
+    <!-- Import de SheetJS pour lire les fichiers Excel binaires directement dans le navigateur -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+    <h1>⚽ TOUR 2026</h1>
+    <div class="subtitle">Classements Additionnels</div>
+    <div class="last-update" id="lastUpdate">Chargement...</div>
+</header>
+
+<nav class="tabs" id="tabs">
+    <div class="tab active-blue" data-tab="general" onclick="showTab('general')">
+        <span class="tab-icon">🏆</span>Général
+    </div>
+    <div class="tab" data-tab="vert" onclick="showTab('vert')">
+        <span class="tab-icon">🟢</span>Maillot Vert
+    </div>
+    <div class="tab" data-tab="pois" onclick="showTab('pois')">
+        <span class="tab-icon">🔴</span>Maillot à Pois
+    </div>
+    <div class="tab" data-tab="journees" onclick="showTab('journees')">
+        <span class="tab-icon">📅</span>Journées
+    </div>
+</nav>
+
+<main class="content">
+    <div class="panel active" id="panel-general">
+        <div class="leaderboard">
+            <div class="lb-header blue" style="background: linear-gradient(135deg, rgba(52,152,219,0.15), transparent); color: var(--accent);">🏆 Classement Général</div>
+            <div id="lb-general"><div class="status-msg"><div class="spinner"></div><br>Chargement...</div></div>
+        </div>
+    </div>
+    <div class="panel" id="panel-vert">
+        <div class="leaderboard">
+            <div class="lb-header green">🟢 Classement Maillot Vert — Sprinter</div>
+            <div id="lb-vert"></div>
+        </div>
+    </div>
+    <div class="panel" id="panel-pois">
+        <div class="leaderboard">
+            <div class="lb-header red">🔴 Classement Maillot à Pois — Grimpeur</div>
+            <div id="lb-pois"></div>
+        </div>
+    </div>
+    <div class="panel" id="panel-journees">
+        <div id="journees-list"></div>
+    </div>
+</main>
+
+<footer class="footer">Concours TOUR
+
+ 2026 — Classements Additionnels</footer>
+
+<script>
+const CONFIG = {
+    // ID Google Drive du fichier data.json partagé
+    DATA_JSON_FILE_ID: '18f8mgH-NiFcP15ZR5IuP55q3jQPeAivk',
+};
+
+function getGoogleDriveDownloadUrl(fileId) {
+    return `https://drive.google.com/uc?export=download&id=${fileId}`;
+}
+
+async function fetchJsonFromDrive(fileId) {
+    const targetUrl = getGoogleDriveDownloadUrl(fileId);
+    const proxies = [
+        url => `https://api.cors.lol/?url=${encodeURIComponent(url)}`,
+        url => `https://corsproxy.org/?${encodeURIComponent(url)}`
+    ];
+    for (const getProxyUrl of proxies) {
+        try {
+            const resp = await fetch(getProxyUrl(targetUrl));
+            if (resp.ok) {
+                const text = await resp.text();
+                return JSON.parse(text);
+            }
+        } catch (e) {
+            console.warn('Proxy CORS échoué :', e);
+        }
+    }
+    throw new Error("Impossible de récupérer data.json depuis Google Drive.");
+}
+
+function renderGeneral(list) {
+    if (!list || !list.length) return '<div class="status-msg">Aucune donnée</div>';
+    return list.map(p => {
+        const rc = p.rang !== '-' && Number(p.rang) <= 3 ? ' r' + p.rang : '';
+        const medal = p.rang === '1' ? '🥇' : p.rang === '2' ? '🥈' : p.rang === '3' ? '🥉' : '';
+        let evolHtml = `<span class="evol-indicator ${p.evol.includes('-')||p.evol.includes('▼')?'evol-down':p.evol.includes('+')||p.evol.includes('▲')?'evol-up':'evol-stable'}">${p.evol.replace(/[▲▼+-]/g,'')||'▬'}</span>`;
+        return `<div class="lb-row"><div class="lb-rank${rc}">${medal || p.rang}</div><div class="lb-name"><div>${esc(p.nom)}</div>${p.equipe?`<div class="team-badge">${esc(p.equipe)}</div>`:''}</div>${evolHtml}<div class="lb-pts" style="display:flex;align-items:center;justify-content:flex-end;"><span>${p.points} pts</span>${p.detail?`<span class="detail-badge">${esc(p.detail)}</span>`:''}</div></div>`;
+    }).join('');
+}
+
+function renderLeaderboard(list) {
+    if (!list || !list.length) return '<div class="status-msg">Aucune donnée</div>';
+    return list.map(p => `<div class="lb-row"><div class="lb-rank r${p.rang}">${p.rang<=3?['🥇','🥈','🥉'][p.rang-1]:p.rang}</div><div class="lb-name">${esc(p.joueur)}</div><div class="lb-pts">${p.points}</div></div>`).join('');
+}
+
+function renderJournees(journees) {
+    if (!journees || !journees.length) return '<div class="status-msg">Aucune journée jouée</div>';
+    return journees.map((j, i) => `<div class="day-card"><div class="day-header${i===0?' open':''}" onclick="toggleDay('day-${i}',this)"><span>📅 ${esc(j.date)}</span><span><span class="profil-badge">${esc(j.profil)}</span><span class="chevron">${i===0?'▲':'▼'}</span></span></div><div class="day-body${i===0?' open':''}" id="day-${i}"><div class="table-scroll"><table class="match-table"><thead><tr><th>#</th><th>Joueur</th>${j.matchs.map(m => `<th><div class="match-label" title="${esc(m)}">${esc(m)}</div></th>`).join('')}<th>Total</th></tr></thead><tbody>${j.classement.map(c => `<tr class="${c.rang<=3?'top'+c.rang:''}"><td>${c.rang<=3?['🥇','🥈','🥉'][c.rang-1]:c.rang}</td><td>${esc(c.joueur)}</td>${c.points.map(pt => `<td>${pt}</td>`).join('')}<td class="total">${c.total}</td></tr>`).join('')}</tbody></table></div></div></div>`).join('');
+}
+
+function renderSetup() {
+    return `<div class="setup-box" style="margin-top: 1rem; border-color: var(--accent);">
+        <h3 style="color: var(--accent); margin-bottom: 0.5rem;">⚙️ Configuration</h3>
+        <p style="margin-bottom: 0.8rem; font-size: 0.8rem; line-height: 1.4;">Pour activer la synchronisation automatique :</p>
+        <ol style="margin-top: 0.5rem; margin-bottom: 0.8rem; padding-left: 1.2rem; font-size: 0.8rem; line-height: 1.6;">
+            <li>Partagez le fichier <strong>web/data.json</strong> sur Google Drive (clic droit → Partager → Tous les utilisateurs disposant du lien).</li>
+            <li>Copiez l'ID du fichier depuis le lien de partage.</li>
+            <li>Collez cet ID dans <code>CONFIG.DATA_JSON_FILE_ID</code> dans le fichier <code>index.html</code>.</li>
+        </ol>
+        <p style="font-size: 0.75rem; color: var(--text-dim);">⏳ Ensuite, cliquez simplement sur "Actualiser" dans Excel pour mettre à jour le site !</p>
+    </div>`;
+}
+
+function toggleDay(id, el) { const b = document.getElementById(id); b.classList.toggle('open'); el.classList.toggle('open'); el.querySelector('.chevron').textContent = b.classList.contains('open') ? '▲' : '▼'; }
+function showTab(t) { document.querySelectorAll('.panel').forEach(p => p.classList.remove('active')); document.querySelectorAll('.tab').forEach(t => t.classList.remove('active-green','active-red','active-blue')); document.getElementById('panel-'+t).classList.add('active'); document.querySelector(`.tab[data-tab="${t}"]`).classList.add(t==='vert'?'active-green':t==='pois'?'active-red':'active-blue'); }
+function esc(s) { const d = document.createElement('div'); d.textContent = s ?? ''; return d.innerHTML; }
+function render(d) { const ts = d.lastUpdate || '—'; document.getElementById('lastUpdate').textContent = 'Mise à jour : ' + ts; document.getElementById('lastUpdate').dataset.ts = ts; document.getElementById('lb-general').innerHTML = renderGeneral(d.classementGeneral); document.getElementById('lb-vert').innerHTML = renderLeaderboard(d.maillotVert); document.getElementById('lb-pois').innerHTML = renderLeaderboard(d.maillotPois); document.getElementById('journees-list').innerHTML = renderJournees(d.journees); }
+
+function loadFallbackScript() {
+    return new Promise((resolve) => {
+        const oldScript = document.getElementById('data-fallback-script');
+        if (oldScript) oldScript.remove();
+        const script = document.createElement('script');
+        script.id = 'data-fallback-script';
+        script.src = 'data.js?t=' + Date.now();
+        script.onload = () => resolve(true);
+        script.onerror = () => resolve(false);
+        document.head.appendChild(script);
+    });
+}
+
+async function main() {
+    const isLocal = window.location.protocol === 'file:';
+
+    // Mode local : charger data.js directement (pas besoin de réseau)
+    if (isLocal) {
+        try {
+            await loadFallbackScript();
+            if (typeof DATA_FALLBACK !== 'undefined') {
+                render(DATA_FALLBACK);
+                return;
+            }
+        } catch (e) {
+            console.error('Erreur chargement local :', e);
+        }
+        document.getElementById('lb-general').innerHTML = '<div class="status-msg">Erreur : lancez d\'abord "Actualiser" dans Excel.</div>';
+        return;
+    }
+
+    // Mode en ligne : afficher immédiatement les données embarquées (data.json local Netlify)
+    let localLoaded = false;
+    try {
+        const resp = await fetch('data.json');
+        if (resp.ok) {
+            const data = await resp.json();
+            render(data);
+            localLoaded = true;
+        }
+    } catch (e) {
+        console.warn('data.json local non disponible :', e);
+    }
+
+    // Puis récupérer la version la plus récente depuis Google Drive en arrière-plan
+    if (CONFIG.DATA_JSON_FILE_ID) {
+        if (!localLoaded) {
+            document.getElementById('lastUpdate').textContent = 'Chargement...';
+        } else {
+            document.getElementById('lastUpdate').innerHTML = '🔄 Vérification en ligne<span class="sync-dot">...</span>';
+        }
+        try {
+            const freshData = await fetchJsonFromDrive(CONFIG.DATA_JSON_FILE_ID);
+            render(freshData);
+            document.getElementById('lastUpdate').textContent = '✅ À jour — ' + (freshData.lastUpdate || '');
+        } catch (e) {
+            console.warn('Google Drive indisponible :', e);
+            if (!localLoaded) {
+                document.getElementById('lastUpdate').textContent = 'Erreur de chargement';
+                document.getElementById('lb-general').innerHTML = renderSetup();
+            } else {
+                document.getElementById('lastUpdate').textContent = '⚠️ Hors-ligne — ' + document.getElementById('lastUpdate').dataset.ts;
+            }
+        }
+    } else if (!localLoaded) {
+        document.getElementById('lb-general').innerHTML = renderSetup();
+        document.getElementById('lastUpdate').textContent = 'Configuration requise';
+    }
+}
+
+main();
+</script>
+</body>
+</html>
+
