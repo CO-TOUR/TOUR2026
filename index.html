@@ -267,14 +267,26 @@
 const CONFIG = {
     // ID Google Drive du fichier data.json partagé
     DATA_JSON_FILE_ID: '18f8mgH-NiFcP15ZR5IuP55q3jQPeAivk',
+    // URL de votre Google Apps Script (proxy personnel)
+    APPS_SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbypOVlCZ5JBNCeh1_QchQgO7W9PA2pCQGshA-_CUgtKCdytwyLfx8eTzofImczTZird/exec',
 };
 
-function getGoogleDriveDownloadUrl(fileId) {
-    return `https://drive.google.com/uc?export=download&id=${fileId}`;
-}
-
 async function fetchJsonFromDrive(fileId) {
-    const targetUrl = getGoogleDriveDownloadUrl(fileId);
+    // 1. Essayer via Google Apps Script (fiable, gratuit, permanent)
+    if (CONFIG.APPS_SCRIPT_URL) {
+        try {
+            const resp = await fetch(CONFIG.APPS_SCRIPT_URL);
+            if (resp.ok) {
+                const text = await resp.text();
+                return JSON.parse(text);
+            }
+        } catch (e) {
+            console.warn('Apps Script échoué :', e);
+        }
+    }
+
+    // 2. Fallback : proxies CORS publics (non fiables)
+    const targetUrl = `https://drive.google.com/uc?export=download&id=${fileId}`;
     const proxies = [
         url => `https://api.cors.lol/?url=${encodeURIComponent(url)}`,
         url => `https://corsproxy.org/?${encodeURIComponent(url)}`
@@ -284,13 +296,14 @@ async function fetchJsonFromDrive(fileId) {
             const resp = await fetch(getProxyUrl(targetUrl));
             if (resp.ok) {
                 const text = await resp.text();
-                return JSON.parse(text);
+                const parsed = JSON.parse(text);
+                if (parsed && parsed.lastUpdate) return parsed;
             }
         } catch (e) {
             console.warn('Proxy CORS échoué :', e);
         }
     }
-    throw new Error("Impossible de récupérer data.json depuis Google Drive.");
+    throw new Error("Impossible de récupérer data.json.");
 }
 
 function renderGeneral(list) {
