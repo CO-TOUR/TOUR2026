@@ -222,13 +222,16 @@
 
 <nav class="tabs" id="tabs">
     <div class="tab active-blue" data-tab="general" onclick="showTab('general')">
-        <span class="tab-icon">🏆</span>Général
+        <span class="tab-icon">🟡</span>Maillot Jaune
     </div>
     <div class="tab" data-tab="vert" onclick="showTab('vert')">
         <span class="tab-icon">🟢</span>Maillot Vert
     </div>
     <div class="tab" data-tab="pois" onclick="showTab('pois')">
         <span class="tab-icon">🔴</span>Maillot à Pois
+    </div>
+    <div class="tab" data-tab="equipes" onclick="showTab('equipes')">
+        <span class="tab-icon">👥</span>Équipes
     </div>
     <div class="tab" data-tab="journees" onclick="showTab('journees')">
         <span class="tab-icon">📅</span>Journées
@@ -238,8 +241,14 @@
 <main class="content">
     <div class="panel active" id="panel-general">
         <div class="leaderboard">
-            <div class="lb-header blue" style="background: linear-gradient(135deg, rgba(52,152,219,0.15), transparent); color: var(--accent);">🏆 Classement Général</div>
+            <div class="lb-header blue" style="background: linear-gradient(135deg, rgba(241,196,15,0.15), transparent); color: var(--gold);">💛 Classement Maillot Jaune</div>
             <div id="lb-general"><div class="status-msg"><div class="spinner"></div><br>Chargement...</div></div>
+        </div>
+    </div>
+    <div class="panel" id="panel-equipes">
+        <div class="leaderboard">
+            <div class="lb-header blue" style="background: linear-gradient(135deg, rgba(52,152,219,0.15), transparent); color: var(--accent);">👥 Classement par Équipes</div>
+            <div id="lb-equipes"><div class="status-msg">Aucune donnée</div></div>
         </div>
     </div>
     <div class="panel" id="panel-vert">
@@ -308,12 +317,51 @@ async function fetchJsonFromDrive(fileId) {
 
 function renderGeneral(list) {
     if (!list || !list.length) return '<div class="status-msg">Aucune donnée</div>';
-    return list.map(p => {
+    
+    const rowsHtml = list.map(p => {
         const rc = p.rang !== '-' && Number(p.rang) <= 3 ? ' r' + p.rang : '';
         const medal = p.rang === '1' ? '🥇' : p.rang === '2' ? '🥈' : p.rang === '3' ? '🥉' : '';
-        let evolHtml = `<span class="evol-indicator ${p.evol.includes('-')||p.evol.includes('▼')?'evol-down':p.evol.includes('+')||p.evol.includes('▲')?'evol-up':'evol-stable'}">${p.evol.replace(/[▲▼+-]/g,'')||'▬'}</span>`;
-        return `<div class="lb-row"><div class="lb-rank${rc}">${medal || p.rang}</div><div class="lb-name"><div>${esc(p.nom)}</div>${p.equipe?`<div class="team-badge">${esc(p.equipe)}</div>`:''}</div>${evolHtml}<div class="lb-pts" style="display:flex;align-items:center;justify-content:flex-end;"><span>${p.points} pts</span>${p.detail?`<span class="detail-badge">${esc(p.detail)}</span>`:''}</div></div>`;
+        const evolHtml = `<span class="evol-indicator ${p.evol.includes('-')||p.evol.includes('▼')?'evol-down':p.evol.includes('+')||p.evol.includes('▲')?'evol-up':'evol-stable'}">${p.evol.replace(/[▲▼+-]/g,'')||'▬'}</span>`;
+        
+        return `<tr class="${rc}">
+            <td style="font-weight: 700; text-align: center;">${medal || p.rang}</td>
+            <td style="font-weight: 600; text-align: left;">${esc(p.nom)}</td>
+            <td style="text-align: center;">${p.equipe?`<span class="team-badge" style="margin:0;">${esc(p.equipe)}</span>`:''}</td>
+            <td style="text-align: center;">${evolHtml}</td>
+            <td style="font-weight: 700; color: var(--gold); text-align: center;">${p.points} pts</td>
+            <td style="text-align: center;">${esc(p.fiabilite)}</td>
+            <td style="text-align: center;"><span class="detail-badge" style="margin:0;">${esc(p.detail)}</span></td>
+            <td style="text-align: center; font-weight: 600; color: var(--accent);">${p.toutPile}</td>
+            <td style="text-align: center; color: var(--green);">${p.maxPtsMatch}</td>
+            <td style="text-align: center; font-weight: 600; color: ${p.serieEnCours > 0 ? 'var(--green)' : p.serieEnCours < 0 ? 'var(--red)' : 'var(--text-dim)'}">${p.serieEnCours > 0 ? '+' + p.serieEnCours : p.serieEnCours}</td>
+            <td style="text-align: center; color: var(--green);">${p.meilleureSerie}</td>
+            <td style="text-align: center; font-weight: 500;">${esc(p.roi)}</td>
+        </tr>`;
     }).join('');
+
+    return `<div class="table-scroll">
+        <table class="match-table" style="min-width: 800px;">
+            <thead>
+                <tr>
+                    <th style="width: 3rem; text-align: center;">#</th>
+                    <th style="text-align: left;">Bettor</th>
+                    <th style="text-align: center;">Équipe</th>
+                    <th style="text-align: center;">Évol.</th>
+                    <th style="text-align: center;">Points</th>
+                    <th style="text-align: center;">Fiabilité</th>
+                    <th style="text-align: center;">Détail</th>
+                    <th style="text-align: center;">Tout-Pile</th>
+                    <th style="text-align: center;">Pts Max/Match</th>
+                    <th style="text-align: center;">Série Actuelle</th>
+                    <th style="text-align: center;">Max Série</th>
+                    <th style="text-align: center;">R.O.I</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${rowsHtml}
+            </tbody>
+        </table>
+    </div>`;
 }
 
 function renderLeaderboard(list) {
@@ -324,6 +372,55 @@ function renderLeaderboard(list) {
 function renderJournees(journees) {
     if (!journees || !journees.length) return '<div class="status-msg">Aucune journée jouée</div>';
     return journees.map((j, i) => `<div class="day-card"><div class="day-header${i===0?' open':''}" onclick="toggleDay('day-${i}',this)"><span>📅 ${esc(j.date)}</span><span><span class="profil-badge">${esc(j.profil)}</span><span class="chevron">${i===0?'▲':'▼'}</span></span></div><div class="day-body${i===0?' open':''}" id="day-${i}"><div class="table-scroll"><table class="match-table"><thead><tr><th>#</th><th>Joueur</th>${j.matchs.map(m => `<th><div class="match-label" title="${esc(m)}">${esc(m)}</div></th>`).join('')}<th>Total</th></tr></thead><tbody>${j.classement.map(c => `<tr class="${c.rang<=3?'top'+c.rang:''}"><td>${c.rang<=3?['🥇','🥈','🥉'][c.rang-1]:c.rang}</td><td>${esc(c.joueur)}</td>${c.points.map(pt => `<td>${pt}</td>`).join('')}<td class="total">${c.total}</td></tr>`).join('')}</tbody></table></div></div></div>`).join('');
+}
+
+function renderEquipes(list) {
+    if (!list || !list.length) return '<div class="status-msg">Aucune donnée</div>';
+    
+    const rowsHtml = list.map(e => {
+        const rc = e.rang !== '-' && Number(e.rang) <= 3 ? ' r' + e.rang : '';
+        const medal = e.rang === '1' ? '🥇' : e.rang === '2' ? '🥈' : e.rang === '3' ? '🥉' : '';
+        const evolHtml = `<span class="evol-indicator ${e.evol.includes('-')||e.evol.includes('▼')?'evol-down':e.evol.includes('+')||e.evol.includes('▲')?'evol-up':'evol-stable'}">${e.evol.replace(/[▲▼+-]/g,'')||'▬'}</span>`;
+        
+        return `<tr class="${rc}">
+            <td style="font-weight: 700; text-align: center;">${medal || e.rang}</td>
+            <td style="font-weight: 600; text-align: left;">${esc(e.nom)}</td>
+            <td style="text-align: center;">${e.nbrJoueurs}</td>
+            <td style="text-align: center;">${evolHtml}</td>
+            <td style="font-weight: 700; color: var(--accent); text-align: center;">${e.points} pts</td>
+            <td style="text-align: center;">${esc(e.fiabilite)}</td>
+            <td style="text-align: center;"><span class="detail-badge" style="margin:0;">${esc(e.detail)}</span></td>
+            <td style="text-align: center;">${e.moyToutPile}</td>
+            <td style="color: var(--green); font-weight: 600; text-align: center;">${e.ptsMax}</td>
+            <td style="color: var(--red); font-weight: 600; text-align: center;">${e.ptsMin}</td>
+            <td style="color: var(--gold); font-weight: 600; text-align: center;">#${e.bestClass}</td>
+            <td style="color: var(--text-dim); text-align: center;">#${e.worstClass}</td>
+        </tr>`;
+    }).join('');
+
+    return `<div class="table-scroll">
+        <table class="match-table" style="min-width: 800px;">
+            <thead>
+                <tr>
+                    <th style="width: 3rem; text-align: center;">#</th>
+                    <th style="text-align: left;">Équipe</th>
+                    <th style="text-align: center;">Joueurs</th>
+                    <th style="text-align: center;">Évol.</th>
+                    <th style="text-align: center;">Moy. Pts</th>
+                    <th style="text-align: center;">Fiabilité</th>
+                    <th style="text-align: center;">Détail</th>
+                    <th style="text-align: center;">Moy. TP</th>
+                    <th style="text-align: center;">Max Pts</th>
+                    <th style="text-align: center;">Min Pts</th>
+                    <th style="text-align: center;">Top Pos</th>
+                    <th style="text-align: center;">Flop Pos</th>
+                </tr>
+            </thead>
+            <tbody>
+                ${rowsHtml}
+            </tbody>
+        </table>
+    </div>`;
 }
 
 function renderSetup() {
@@ -340,9 +437,9 @@ function renderSetup() {
 }
 
 function toggleDay(id, el) { const b = document.getElementById(id); b.classList.toggle('open'); el.classList.toggle('open'); el.querySelector('.chevron').textContent = b.classList.contains('open') ? '▲' : '▼'; }
-function showTab(t) { document.querySelectorAll('.panel').forEach(p => p.classList.remove('active')); document.querySelectorAll('.tab').forEach(t => t.classList.remove('active-green','active-red','active-blue')); document.getElementById('panel-'+t).classList.add('active'); document.querySelector(`.tab[data-tab="${t}"]`).classList.add(t==='vert'?'active-green':t==='pois'?'active-red':'active-blue'); }
+function showTab(t) { document.querySelectorAll('.panel').forEach(p => p.classList.remove('active')); document.querySelectorAll('.tab').forEach(tabEl => tabEl.classList.remove('active-green','active-red','active-blue')); document.getElementById('panel-'+t).classList.add('active'); document.querySelector(`.tab[data-tab="${t}"]`).classList.add(t==='vert'?'active-green':t==='pois'?'active-red':'active-blue'); }
 function esc(s) { const d = document.createElement('div'); d.textContent = s ?? ''; return d.innerHTML; }
-function render(d) { const ts = d.lastUpdate || '—'; document.getElementById('lastUpdate').textContent = 'Mise à jour : ' + ts; document.getElementById('lastUpdate').dataset.ts = ts; document.getElementById('lb-general').innerHTML = renderGeneral(d.classementGeneral); document.getElementById('lb-vert').innerHTML = renderLeaderboard(d.maillotVert); document.getElementById('lb-pois').innerHTML = renderLeaderboard(d.maillotPois); document.getElementById('journees-list').innerHTML = renderJournees(d.journees); }
+function render(d) { const ts = d.lastUpdate || '—'; document.getElementById('lastUpdate').textContent = 'Mise à jour : ' + ts; document.getElementById('lastUpdate').dataset.ts = ts; document.getElementById('lb-general').innerHTML = renderGeneral(d.classementGeneral); document.getElementById('lb-equipes').innerHTML = renderEquipes(d.classementEquipes); document.getElementById('lb-vert').innerHTML = renderLeaderboard(d.maillotVert); document.getElementById('lb-pois').innerHTML = renderLeaderboard(d.maillotPois); document.getElementById('journees-list').innerHTML = renderJournees(d.journees); }
 
 function loadFallbackScript() {
     return new Promise((resolve) => {

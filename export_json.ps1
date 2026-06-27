@@ -43,27 +43,73 @@ try {
     $genWs = $srcWb.Worksheets.Item("Classement")
     
     $classementGeneral = @()
-    # Lignes 7 à 21 pour les 15 joueurs
     for ($r = 7; $r -le 21; $r++) {
-        $name = $genWs.Cells.Item($r, 4).Value2
+        $name = $genWs.Cells.Item($r, 4).Text
         if ($name -ne $null -and $name -ne "") {
-            $rank = $genWs.Cells.Item($r, 3).Value2
-            $team = $genWs.Cells.Item($r, 5).Value2
-            $evol = $genWs.Cells.Item($r, 6).Value2
-            $points = $genWs.Cells.Item($r, 8).Value2
-            $detail = $genWs.Cells.Item($r, 10).Value2
+            $rank = $genWs.Cells.Item($r, 3).Text
+            $team = $genWs.Cells.Item($r, 5).Text
+            $evol = $genWs.Cells.Item($r, 6).Text
+            $points = $genWs.Cells.Item($r, 8).Text
+            $fiabilite = $genWs.Cells.Item($r, 9).Text
+            $detail = $genWs.Cells.Item($r, 10).Text
+            $toutPile = $genWs.Cells.Item($r, 11).Text
+            $maxPtsMatch = $genWs.Cells.Item($r, 12).Text
+            $serieEnCours = $genWs.Cells.Item($r, 13).Text
+            $meilleureSerie = $genWs.Cells.Item($r, 14).Text
+            $roi = $genWs.Cells.Item($r, 16).Text
             
             $classementGeneral += [PSCustomObject]@{
-                rang = if ($rank -ne $null) { [string]$rank } else { "-" }
-                nom = [string]$name
-                equipe = if ($team -ne $null) { [string]$team } else { "" }
-                evol = if ($evol -ne $null) { [string]$evol } else { "" }
-                points = if ($points -ne $null) { [double]$points } else { 0.0 }
-                detail = if ($detail -ne $null) { [string]$detail } else { "" }
+                rang = if ($rank) { $rank } else { "-" }
+                nom = $name
+                equipe = if ($team) { $team } else { "" }
+                evol = if ($evol) { $evol } else { "" }
+                points = if ($points) { [double]$points.Replace(",", ".") } else { 0.0 }
+                fiabilite = if ($fiabilite) { $fiabilite } else { "" }
+                detail = if ($detail) { $detail } else { "" }
+                toutPile = if ($toutPile) { [int]$toutPile } else { 0 }
+                maxPtsMatch = if ($maxPtsMatch) { [double]$maxPtsMatch.Replace(",", ".") } else { 0.0 }
+                serieEnCours = if ($serieEnCours) { [int]$serieEnCours } else { 0 }
+                meilleureSerie = if ($meilleureSerie) { [int]$meilleureSerie } else { 0 }
+                roi = if ($roi) { $roi } else { "" }
             }
         }
     }
-    Write-Host "   -> Lu $($( $classementGeneral.Count )) lignes de classement général."
+    $eqWs = $srcWb.Worksheets.Item("ClassementEQ")
+    $classementEquipes = @()
+    # Lignes 7 à 11 pour les 5 équipes
+    for ($r = 7; $r -le 11; $r++) {
+        $team = $eqWs.Cells.Item($r, 4).Text
+        if ($team -ne $null -and $team -ne "") {
+            $rank = $eqWs.Cells.Item($r, 3).Text
+            $nbrJoueurs = $eqWs.Cells.Item($r, 5).Text
+            $evol = $eqWs.Cells.Item($r, 6).Text
+            $moyPoints = $eqWs.Cells.Item($r, 8).Text
+            $fiabilite = $eqWs.Cells.Item($r, 9).Text
+            $detail = $eqWs.Cells.Item($r, 10).Text
+            $moyToutPile = $eqWs.Cells.Item($r, 11).Text
+            $ptsMax = $eqWs.Cells.Item($r, 12).Text
+            $ptsMin = $eqWs.Cells.Item($r, 13).Text
+            $bestClass = $eqWs.Cells.Item($r, 14).Text
+            $worstClass = $eqWs.Cells.Item($r, 15).Text
+            
+            $classementEquipes += [PSCustomObject]@{
+                rang = if ($rank) { $rank } else { "-" }
+                nom = $team
+                nbrJoueurs = if ($nbrJoueurs) { [int]$nbrJoueurs } else { 0 }
+                evol = if ($evol) { $evol } else { "" }
+                points = if ($moyPoints) { [double]$moyPoints.Replace(",", ".") } else { 0.0 }
+                fiabilite = if ($fiabilite) { $fiabilite } else { "" }
+                detail = if ($detail) { $detail } else { "" }
+                moyToutPile = if ($moyToutPile) { [double]$moyToutPile.Replace(",", ".") } else { 0.0 }
+                ptsMax = if ($ptsMax) { [double]$ptsMax.Replace(",", ".") } else { 0.0 }
+                ptsMin = if ($ptsMin) { [double]$ptsMin.Replace(",", ".") } else { 0.0 }
+                bestClass = if ($bestClass) { [int]$bestClass } else { 0 }
+                worstClass = if ($worstClass) { [int]$worstClass } else { 0 }
+            }
+        }
+    }
+    Write-Host "   -> Lu $($( $classementEquipes.Count )) lignes de classement par équipes."
+
     if ($openedConcours) {
         $srcWb.Close($false)
         $srcWb = $null
@@ -221,6 +267,7 @@ try {
     $output = [PSCustomObject]@{
         lastUpdate = (Get-Date).ToString("dd/MM/yyyy HH:mm")
         classementGeneral = $classementGeneral
+        classementEquipes = $classementEquipes
         maillotVert = $maillotVert
         maillotPois = $maillotPois
         journees = $journees
