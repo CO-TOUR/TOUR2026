@@ -1,5 +1,5 @@
 const DATA_FALLBACK = {
-    "lastUpdate":  "27/06/2026 14:54",
+    "lastUpdate":  "27/06/2026 15:02",
     "classementGeneral":  [
                               {
                                   "rang":  "1",

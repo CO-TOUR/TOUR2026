@@ -475,7 +475,7 @@ async function main() {
     // Mode en ligne : afficher immédiatement les données embarquées (data.json local Netlify)
     let localLoaded = false;
     try {
-        const resp = await fetch('data.json');
+        const resp = await fetch('data.json?t=' + Date.now());
         if (resp.ok) {
             const data = await resp.json();
             render(data);
